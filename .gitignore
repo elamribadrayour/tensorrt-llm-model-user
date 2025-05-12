@@ -4,3 +4,6 @@
 .mypy_cache
 .cursor
 __pycache__
+.port-forward.pid
+src/job/protos/
+src/job/stress-grpc.py

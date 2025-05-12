@@ -33,9 +33,10 @@ uv sync --frozen
 
 ## Usage
 
-```python
-uv run main.py
-```
+
+* make stress: run stress test using locust
+* make batch-http: run batch of prediction using http protocol
+* make batch-grpc: run batch of prediction using http protocol [NOT IMPLEMENTED]
 
 ## License
 

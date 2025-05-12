@@ -9,46 +9,49 @@ from loguru import logger
 from result import Result, Ok, Err
 from pydantic import ValidationError
 
-from helpers.network import get_port
+from helpers.network import get_tensorrt_url
 from models.model_response import ModelResponse
 from models.customer_support_response import CustomerSupportResponse
 
 
-def get_prompts(data_type: str, data: str) -> list[dict[str, str]]:
-    if data_type == "json":
-        with open(data, "r") as f:
-            prompts = json.load(f)["prompts"]
-    else:
-        prompts = [data]
+def get_prompt(question: str) -> str:
+    """
+    Builds the prompt for the model.
+    """
+    return (
+        "<s>[INST] <<SYS>>\n"
+        "You are a helpful and professional customer support agent for State Farm insurance. "
+        "Your response should be structured as a JSON object in the following format:\n\n"
+        "{\n"
+        '  "classification": "<the type of issue (e.g., Coverage Inquiry)>",\n'
+        '  "answer": "<your answer here>",\n'
+        '  "next_action": "<the action you expect the user to take, if any>",\n'
+        '  "additional_details": { "<any extra context>" }\n'
+        "}\n\n"
+        "Please ensure your response is a valid JSON. Do not include any additional text or formatting outside of the JSON object.\n"
+        "<</SYS>>\n\n"
+        f"{question} [/INST]</s>"
+    )
 
+
+def get_prompts(path: str) -> list[dict[str, str]]:
+    with open(path, "r") as f:
+        prompts = json.load(f)["prompts"]
     output = [
         {
             "question": prompt,
-            "prompt": (
-                "<s>[INST] <<SYS>>\n"
-                "You are a helpful and professional customer support agent for State Farm insurance. "
-                "Your response should be structured as a JSON object in the following format:\n\n"
-                "{\n"
-                '  "classification": "<the type of issue (e.g., Coverage Inquiry)>",\n'
-                '  "answer": "<your answer here>",\n'
-                '  "next_action": "<the action you expect the user to take, if any>",\n'
-                '  "additional_details": { "<any extra context>" }\n'
-                "}\n\n"
-                "Please ensure your response is a valid JSON. Do not include any additional text or formatting outside of the JSON object.\n"
-                "<</SYS>>\n\n"
-                f"{prompt} [/INST]</s>"
-            ),
+            "prompt": get_prompt(question=prompt),
         }
         for prompt in prompts
     ]
     return output
 
 
-def get_payloads(data_type: str, data: str) -> list[dict[str, Any]]:
+def get_payloads(path: str) -> list[dict[str, Any]]:
     """
     Builds the payload used for the inference request.
     """
-    prompts = get_prompts(data_type=data_type, data=data)
+    prompts = get_prompts(path=path)
     payloads = [
         {
             "payload": {
@@ -106,6 +109,13 @@ def get_clean_json(text: str) -> str:
     return ""
 
 
+def get_parsed_json(text: str) -> dict[str, Any]:
+    """
+    Parses the text to extract the first balanced JSON object.
+    """
+    return json.loads(text)
+
+
 async def get_response(
     session: aiohttp.ClientSession, url: str, payload: dict[str, Any]
 ) -> Result[CustomerSupportResponse, str]:
@@ -130,7 +140,7 @@ async def get_response(
             json_string = get_clean_json(text=cleaned_text)
 
             try:
-                parsed_json = json.loads(json_string)
+                parsed_json = get_parsed_json(text=json_string)
                 cs_response = CustomerSupportResponse(**parsed_json)
                 return Ok(cs_response)
             except Exception as e:
@@ -161,7 +171,7 @@ async def process_payload(
 
 
 async def process_payloads(
-    url: str, payloads: list[dict[str, Any]], max_concurrent: int
+    url: str, payloads: list[dict[str, Any]], max_concurrent: int = 10
 ) -> list[dict | None]:
     async with aiohttp.ClientSession() as session:
         tasks = list()
@@ -186,46 +196,22 @@ async def process_payloads(
 async def async_main() -> None:
     parser = ArgumentParser()
     parser.add_argument(
-        "--data-type",
-        type=str,
-        required=True,
-        default="text",
-        choices=["json", "text"],
-        help="The type of data to use for the inference request",
-    )
-    parser.add_argument(
-        "--data",
+        "--path",
         type=str,
         required=True,
         help="The path to the data file to use for the inference request or the text to use for the inference request",
     )
-    parser.add_argument(
-        "--max-concurrent",
-        type=int,
-        default=10,
-        help="Maximum number of concurrent requests",
-    )
     args = parser.parse_args()
 
-    payloads = get_payloads(data_type=args.data_type, data=args.data)
+    payloads = get_payloads(path=args.path)
 
     with (
-        get_port(
+        get_tensorrt_url(
             namespace="model-serving", service="tensorrt-service", remote_port=8000
         ) as url,
         open("outputs.example.json", "w") as f,
     ):
-        results = await process_payloads(
-            url=url, payloads=payloads, max_concurrent=args.max_concurrent
-        )
+        results = await process_payloads(url=url, payloads=payloads)
         f.write(
             json.dumps([result for result in results if result is not None], indent=4)
         )
-
-
-def main() -> None:
-    asyncio.run(async_main())
-
-
-if __name__ == "__main__":
-    main()

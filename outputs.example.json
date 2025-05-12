@@ -26,12 +26,13 @@
     {
         "question": "Hello, I need to update my policy details because I recently moved to a new address. Can you assist?",
         "response": {
-            "answer": "I'd be happy to help you update your policy details. Can you please provide me with your policy number and the new address you'd like to update?",
+            "answer": "To update your policy details, please visit our website at statefarm.com and log in to your account. From there, you can navigate to the 'My Policy' section and select 'Update Address'. You can also contact us at 1-800-STATE-FARM to speak with a representative who can assist you over the phone.",
             "additional_details": {
-                "required_info": "Policy number and new address are required to update your policy details"
+                "website": "statefarm.com",
+                "phone_number": "1-800-STATE-FARM"
             },
             "classification": "Policy Update",
-            "next_action": "Provide policy number and new address"
+            "next_action": "Visit our website or call us to update your policy details"
         }
     },
     {
@@ -105,13 +106,12 @@
     {
         "question": "Hi, I'm considering canceling my policy. Could you explain the cancellation process and any potential fees?",
         "response": {
-            "answer": "To cancel your policy, please contact your State Farm agent or call our customer service number at 1-800-STATE-FARM. They will guide you through the cancellation process and inform you of any applicable fees. Typically, there is a cancellation fee, which varies depending on your policy and state of residence. Your agent will provide you with the exact details.",
+            "answer": "To cancel your policy, please contact your State Farm agent or call our customer service number at 1-800-STATE-FARM. They will guide you through the cancellation process and inform you of any applicable fees. Typically, there is a cancellation fee, which varies by state, but it's usually a percentage of your premium or a flat rate. Your agent will provide you with the specific details.",
             "additional_details": {
-                "cancellation_fee": "Varies by policy and state",
-                "contact_info": "1-800-STATE-FARM or your State Farm agent"
+                "cancellation_fee": "varies by state, typically a percentage of premium or flat rate"
             },
             "classification": "Cancellation Inquiry",
-            "next_action": "Contact your State Farm agent or call our customer service number to initiate the cancellation process"
+            "next_action": "Contact your agent or call our customer service number to initiate the cancellation process"
         }
     }
 ]

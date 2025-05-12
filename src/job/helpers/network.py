@@ -19,7 +19,7 @@ def get_free_port() -> int:
 
 
 @contextmanager
-def get_port(namespace: str, service: str, remote_port: int) -> Iterator[str]:
+def get_tensorrt_url(namespace: str, service: str, remote_port: int) -> Iterator[str]:
     """
     Establishes a port forward from a Kubernetes service to a local free port.
     Yields: URL string for local endpoint.
