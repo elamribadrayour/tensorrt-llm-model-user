@@ -5,12 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "aiohttp>=3.11.18",
     "loguru>=0.7.3",
     "numpy>=2.2.5",
     "pydantic>=2.11.4",
     "requests>=2.32.3",
-    "transformers>=4.51.3",
-    "tritonclient>=2.46.0",
+    "result>=0.17.0",
 ]
 
 [dependency-groups]

@@ -1,0 +1,117 @@
+[
+    {
+        "question": "Hello, I would like to know if my teenage son, who just got his license, is covered under my current policy?",
+        "response": {
+            "answer": "As a State Farm customer, your policy automatically includes coverage for all household members, including your teenage son, as long as they are listed on the policy. However, please note that some policies may have specific requirements or restrictions for teenage drivers. I recommend checking your policy documents or contacting your agent for more information.",
+            "additional_details": {
+                "policy_type": "auto",
+                "driver_status": "newly licensed"
+            },
+            "classification": "Coverage Inquiry",
+            "next_action": "Check policy documents or contact your agent for more information"
+        }
+    },
+    {
+        "question": "Hi, I noticed an unexpected charge on my recent bill. Can you explain what this charge is for?",
+        "response": {
+            "answer": "I'd be happy to help you understand the unexpected charge on your recent bill. Can you please provide me with your policy number so I can look into this further?",
+            "additional_details": {
+                "expected_response": "Policy number",
+                "next_step": "Review and address the charge"
+            },
+            "classification": "Billing Inquiry",
+            "next_action": "Provide policy number"
+        }
+    },
+    {
+        "question": "Hello, I need to update my policy details because I recently moved to a new address. Can you assist?",
+        "response": {
+            "answer": "I'd be happy to help you update your policy details. Can you please provide me with your policy number and the new address you'd like to update?",
+            "additional_details": {
+                "required_info": "Policy number and new address are required to update your policy details"
+            },
+            "classification": "Policy Update",
+            "next_action": "Provide policy number and new address"
+        }
+    },
+    {
+        "question": "Hi, I need help filing a claim after a minor car accident. Could you guide me through the process?",
+        "response": {
+            "answer": "To file a claim, you can start by calling our 24/7 claims hotline at 1-800-SF-CLAIM (1-800-732-5246). You can also report the claim online through our website or mobile app. Please have your policy number and a detailed description of the incident ready. Our claims representative will guide you through the process and answer any questions you may have.",
+            "additional_details": {
+                "policy_number": "Please have your policy number available to expedite the process",
+                "incident_details": "Be prepared to provide a detailed description of the accident, including the date, time, location, and any injuries or damages involved"
+            },
+            "classification": "Claim Filing",
+            "next_action": "Call the claims hotline or report the claim online"
+        }
+    },
+    {
+        "question": "Hello, could you explain the renewal process for my auto insurance policy and any upcoming changes?",
+        "response": {
+            "answer": "The renewal process for your auto insurance policy typically begins 30-60 days before your policy's expiration date. You will receive a renewal notice from us via email or mail, which will outline the details of your policy, including the premium due date, payment options, and any changes to your coverage. If you have any questions or concerns about your renewal, please don't hesitate to reach out to us. We will also review your policy to ensure that it still meets your needs and make any necessary adjustments.",
+            "additional_details": {
+                "review_date": "Please review your renewal notice carefully and contact us if you have any questions or concerns about your policy or premium."
+            },
+            "classification": "Coverage Inquiry",
+            "next_action": "Review your renewal notice and contact us if you have any questions or concerns"
+        }
+    },
+    {
+        "question": "Hi, I\u2019m stranded on the highway and need roadside assistance. What should I do under my current policy?",
+        "response": {
+            "answer": "As a State Farm customer, you're eligible for roadside assistance under your policy. Please call our 24/7 roadside assistance hotline at 1-800-STATE-FARM (1-800-782-8332) to request assistance. They'll send a tow truck or other service provider to help you get back on the road.",
+            "additional_details": {
+                "policy_details": "Please have your policy number and vehicle information ready when you call."
+            },
+            "classification": "Roadside Assistance",
+            "next_action": "Call the roadside assistance hotline"
+        }
+    },
+    {
+        "question": "Hello, can you clarify the maximum coverage limit for my collision coverage?",
+        "response": {
+            "answer": "The maximum coverage limit for collision coverage varies based on the type of vehicle and the state you reside in. Typically, the maximum coverage limit for collision coverage is the actual cash value of your vehicle, minus your deductible. However, some states have specific laws that may affect the maximum coverage limit. I can provide you with more information on the specific laws in your state if you'd like.",
+            "additional_details": {
+                "state": "Please let me know your state of residence so I can provide you with more information"
+            },
+            "classification": "Coverage Inquiry",
+            "next_action": "I can provide you with more information on the specific laws in your state if you'd like"
+        }
+    },
+    {
+        "question": "Hi, are there any discounts available for safe driving that I might qualify for?",
+        "response": {
+            "answer": "Yes, State Farm offers a variety of safe driving discounts. These include the Steer Clear program, which rewards safe driving habits with discounts on your policy. Additionally, if you have a vehicle with advanced safety features such as lane departure warning or blind spot monitoring, you may be eligible for a Safe Driver Discount. We can discuss these options further and determine which ones you may qualify for.",
+            "additional_details": {
+                "Steer Clear program": "This program uses a mobile app to track your driving habits and rewards safe driving with discounts on your policy.",
+                "Safe Driver Discount": "This discount is available for vehicles equipped with advanced safety features such as lane departure warning or blind spot monitoring."
+            },
+            "classification": "Coverage Inquiry",
+            "next_action": "Please provide your policy number so we can review your current coverage and discuss potential discounts."
+        }
+    },
+    {
+        "question": "Hello, I would like to check the status of the claim I filed last week. Can you provide an update?",
+        "response": {
+            "answer": "I'd be happy to help you check the status of your claim. Can you please provide me with your claim number so I can look it up in our system?",
+            "additional_details": {
+                "claim_number": "Please enter the 7-digit claim number you received when you filed the claim"
+            },
+            "classification": "Claim Status Inquiry",
+            "next_action": "Provide claim number"
+        }
+    },
+    {
+        "question": "Hi, I'm considering canceling my policy. Could you explain the cancellation process and any potential fees?",
+        "response": {
+            "answer": "To cancel your policy, please contact your State Farm agent or call our customer service number at 1-800-STATE-FARM. They will guide you through the cancellation process and inform you of any applicable fees. Typically, there is a cancellation fee, which varies depending on your policy and state of residence. Your agent will provide you with the exact details.",
+            "additional_details": {
+                "cancellation_fee": "Varies by policy and state",
+                "contact_info": "1-800-STATE-FARM or your State Farm agent"
+            },
+            "classification": "Cancellation Inquiry",
+            "next_action": "Contact your State Farm agent or call our customer service number to initiate the cancellation process"
+        }
+    }
+]

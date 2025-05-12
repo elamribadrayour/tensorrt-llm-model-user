@@ -3,3 +3,4 @@
 .ruff_cache
 .mypy_cache
 .cursor
+__pycache__
